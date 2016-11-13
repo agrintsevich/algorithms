@@ -1,1 +1,1 @@
-Simple java app, providing aportunity to register sort algorithms 
+Some sort and string algorithms implementation
