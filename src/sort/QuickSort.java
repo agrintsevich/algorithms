@@ -1,8 +1,9 @@
 package sort;
 
-public class QuickSort extends Sort{
+public class QuickSort extends AbstractSortAlgorithm {
+
     @Override
-    public <T> Iterable<T> doSort(Iterable<T> data) {
+    public <T extends Comparable> Iterable<T> doSort(Iterable<T> data) {
         return null;
     }
 }

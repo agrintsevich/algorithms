@@ -1,14 +1,14 @@
 package util;
 
 import sort.QuickSort;
-import sort.Sort;
+import sort.AbstractSortAlgorithm;
 
 import java.util.HashMap;
 
 public class SortAlgorithmFactory {
-    private static HashMap<String, Sort> sorts = new HashMap<>();
-    private static HashMap<String, Class<? extends Sort>> classMapping = new HashMap<String, Class<? extends Sort>>();
-    private static Sort defaultSort = new QuickSort();
+    private static HashMap<String, AbstractSortAlgorithm> sorts = new HashMap<>();
+    private static HashMap<String, Class<? extends AbstractSortAlgorithm>> classMapping = new HashMap<String, Class<? extends AbstractSortAlgorithm>>();
+    private static AbstractSortAlgorithm defaultSort = new QuickSort();
 
     static {
         try {
@@ -21,17 +21,17 @@ public class SortAlgorithmFactory {
         }
     }
 
-    public static Sort getDefaultSort() {
+    public static AbstractSortAlgorithm getDefaultSort() {
         if (defaultSort == null) {
             defaultSort = getSort("quicksort");
         }
         return defaultSort;
     }
 
-    public static Sort getSort(String name) {
-        Sort sort = sorts.get(name);
+    public static AbstractSortAlgorithm getSort(String name) {
+        AbstractSortAlgorithm sort = sorts.get(name);
         if (sort != null) {
-            Class<? extends Sort> c = classMapping.get(name);
+            Class<? extends AbstractSortAlgorithm> c = classMapping.get(name);
             if (c != null) {
                 try {
                     sort = c.newInstance();
@@ -47,7 +47,7 @@ public class SortAlgorithmFactory {
 
     }
 
-    public static void registerSort(String name, Class<? extends Sort> sort) {
+    public static void registerSort(String name, Class<? extends AbstractSortAlgorithm> sort) {
         classMapping.put(name, sort);
     }
 }
